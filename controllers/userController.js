@@ -1,100 +1,75 @@
+// controllers/userController.js
 const User = require('../models/User');
-const bcrypt = require('bcryptjs');
-const path = require('path');
-const fs = require('fs'); 
+const Address = require('../models/Address'); // Import Address model
 
-exports.updateProfile = async (req, res) => {
-    try {
-        const { userId } = req.user;
-        const { username, email, password } = req.body;
-        const updates = {};
-
-        const user = await User.findById(userId);
-
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-
-        if (username !== undefined) updates.username = username;
-        if (email !== undefined) updates.email = email;
-
-        if (password) {
-            const hashedPassword = await bcrypt.hash(password, 12);
-            updates.password = hashedPassword;
-        }
-
-        const updatedUser = await User.findByIdAndUpdate(userId, updates, { new: true });
-
-        res.status(200).json({ message: 'Profile updated successfully', user: updatedUser });
-    } catch (err) {
-        res.status(400).json({ message: 'Error updating profile', error: err.message });
-    }
-};
-
-exports.uploadProfilePicture = async (req, res) => {
-    try {
-        const { userId } = req.user;
-        const file = req.file;
-
-        if (!file) {
-            return res.status(400).json({ message: 'No file uploaded' });
-        }
-
-        const filePath = `/images/profiles/${file.filename}`;
-
-        const user = await User.findById(userId);
-
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-
-        if (user.profilePicture) {
-            const oldProfilePicturePath = path.join(__dirname, '..', user.profilePicture);
-            if (fs.existsSync(oldProfilePicturePath)) {
-                fs.unlinkSync(oldProfilePicturePath);
-            }
-        }
-
-        const updatedUser = await User.findByIdAndUpdate(userId, { profilePicture: filePath }, { new: true });
-
-        res.status(200).json({ message: 'Profile picture updated successfully', user: updatedUser });
-    } catch (err) {
-        res.status(400).json({ message: 'Error uploading file', error: err.message });
-    }
-};
-
+// Get User Profile
 exports.getProfile = async (req, res) => {
-    try {
-        const { userId } = req.user;
-
-        const user = await User.findById(userId);
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-
-        res.status(200).json(user);
-    } catch (err) {
-        res.status(400).json({ message: 'Error retrieving profile', error: err.message });
-    }
+  try {
+    // Find user and populate address field
+    const user = await User.findById(req.user._id)
+      .populate('address')  // Populate address field
+      .select('-password');
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
 };
 
+// Update User Profile with Profile Picture
+exports.updateProfile = async (req, res) => {
+  const { fullName } = req.body;
+  const profilePic = req.file ? req.file.filename : undefined;
+
+  try {
+    // Find the user
+    const user = await User.findById(req.user._id);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    // Handle updating the fullName
+    user.fullName = fullName || user.fullName;
+
+    // Handle profile picture update
+    if (profilePic) {
+      // Delete old profile picture if it exists and is not the default picture
+      if (user.profilePic && user.profilePic !== 'default-profile-pic.jpg') {
+        const oldPicPath = path.join(__dirname, '..', 'images', 'profile', user.profilePic);
+        if (fs.existsSync(oldPicPath)) {
+          fs.unlinkSync(oldPicPath);
+        }
+      }
+      user.profilePic = profilePic;
+    }
+
+    // Save the updated user
+    await user.save();
+
+    res.status(200).json({ message: 'Profile updated successfully', user });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
+
+// Get all users (admin only)
 exports.getAllUsers = async (req, res) => {
-    try {
-        const users = await User.find();
-        res.status(200).json(users);
-    } catch (err) {
-        res.status(400).json({ message: 'Error retrieving users', error: err.message });
-    }
+  try {
+    const users = await User.find().populate('address').select('-password'); // Exclude password and populate address
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
 };
 
+// Get user by ID (admin only)
 exports.getUserById = async (req, res) => {
-    try {
-        const user = await User.findById(req.params.id);
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-        res.status(200).json(user);
-    } catch (err) {
-        res.status(400).json({ message: 'Error retrieving user', error: err.message });
-    }
+  const { id } = req.params;
+
+  try {
+    const user = await User.findById(id).populate('address').select('-password'); // Exclude password and populate address
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
 };

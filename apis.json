@@ -1,0 +1,1303 @@
+{
+    "info": {
+      "_postman_id": "12345678-1234-1234-1234-123456789012",
+      "name": "E-Commerce API",
+      "description": "API endpoints for e-commerce website",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Auth Routes",
+        "item": [
+          {
+            "name": "Register",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\"email\":\"test@example.com\",\"password\":\"password123\"}"
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/auth/register",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "auth",
+                  "register"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Login",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\"email\":\"test@example.com\",\"password\":\"password123\"}"
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/auth/login",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "auth",
+                  "login"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "User Routes",
+        "item": [
+          {
+            "name": "Get User Profile",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:5000/api/user/profile",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "user",
+                  "profile"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Update User Profile",
+            "request": {
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\"name\":\"Updated Name\",\"email\":\"updated@example.com\"}"
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/user/profile",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "user",
+                  "profile"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Change Password",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\"currentPassword\":\"oldpassword\",\"newPassword\":\"newpassword123\"}"
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/user/change-password",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "user",
+                  "change-password"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "Category Routes",
+        "item": [
+          {
+            "name": "Create Category",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\"name\":\"Electronics\",\"image\":\"/path/to/image.jpg\"}"
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/category/category",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "category",
+                  "category"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Get All Categories",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:5000/api/category/categories",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "category",
+                  "categories"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Get Category By ID",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:5000/api/category/category/{{id}}",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "category",
+                  "category",
+                  "{{id}}"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Update Category",
+            "request": {
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\"name\":\"Updated Electronics\",\"image\":\"/path/to/new-image.jpg\"}"
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/category/category/{{id}}",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "category",
+                  "category",
+                  "{{id}}"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Delete Category",
+            "request": {
+              "method": "DELETE",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:5000/api/category/category/{{id}}",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "category",
+                  "category",
+                  "{{id}}"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "Subcategory Routes",
+        "item": [
+          {
+            "name": "Create Subcategory",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\"name\":\"Smartphones\",\"category\":\"Electronics\",\"image\":\"/path/to/image.jpg\"}"
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/subcategory/subcategory",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "subcategory",
+                  "subcategory"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Get All Subcategories",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:5000/api/subcategory/subcategories",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "subcategory",
+                  "subcategories"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Get Subcategory By ID",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:5000/api/subcategory/subcategory/{{id}}",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "subcategory",
+                  "subcategory",
+                  "{{id}}"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Update Subcategory",
+            "request": {
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\"name\":\"Updated Smartphones\",\"category\":\"Electronics\",\"image\":\"/path/to/new-image.jpg\"}"
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/subcategory/subcategory/{{id}}",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "subcategory",
+                  "subcategory",
+                  "{{id}}"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Delete Subcategory",
+            "request": {
+              "method": "DELETE",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:5000/api/subcategory/subcategory/{{id}}",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "subcategory",
+                  "subcategory",
+                  "{{id}}"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "Product Routes",
+        "item": [
+          {
+            "name": "Create Product",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "multipart/form-data",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "formdata",
+                "formdata": [
+                  {
+                    "key": "name",
+                    "value": "Smartphone",
+                    "type": "text"
+                  },
+                  {
+                    "key": "description",
+                    "value": "Latest model with advanced features",
+                    "type": "text"
+                  },
+                  {
+                    "key": "price",
+                    "value": "699.99",
+                    "type": "text"
+                  },
+                  {
+                    "key": "category",
+                    "value": "Electronics",
+                    "type": "text"
+                  },
+                  {
+                    "key": "subcategory",
+                    "value": "Smartphones",
+                    "type": "text"
+                  },
+                  {
+                    "key": "images",
+                    "type": "file",
+                    "src": "/path/to/product-image.jpg"
+                  }
+                ]
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/product/product",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "product",
+                  "product"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Get All Products",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:5000/api/product/products",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "product",
+                  "products"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Get Product By ID",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:5000/api/product/product/{{id}}",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "product",
+                  "product",
+                  "{{id}}"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Update Product",
+            "request": {
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "multipart/form-data",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "formdata",
+                "formdata": [
+                  {
+                    "key": "name",
+                    "value": "Updated Smartphone",
+                    "type": "text"
+                  },
+                  {
+                    "key": "description",
+                    "value": "Updated model with more features",
+                    "type": "text"
+                  },
+                  {
+                    "key": "price",
+                    "value": "799.99",
+                    "type": "text"
+                  },
+                  {
+                    "key": "category",
+                    "value": "Electronics",
+                    "type": "text"
+                  },
+                  {
+                    "key": "subcategory",
+                    "value": "Smartphones",
+                    "type": "text"
+                  },
+                  {
+                    "key": "images",
+                    "type": "file",
+                    "src": "/path/to/updated-product-image.jpg"
+                  }
+                ]
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/product/product/{{id}}",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "product",
+                  "product",
+                  "{{id}}"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Delete Product",
+            "request": {
+              "method": "DELETE",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:5000/api/product/product/{{id}}",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "product",
+                  "product",
+                  "{{id}}"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "Address Routes",
+        "item": [
+          {
+            "name": "Create Address",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\"street\":\"123 Main St\",\"city\":\"New York\",\"state\":\"NY\",\"zip\":\"10001\",\"country\":\"USA\"}"
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/address/address",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "address",
+                  "address"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Get All Addresses",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:5000/api/address/addresses",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "address",
+                  "addresses"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Get Address By ID",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:5000/api/address/address/{{id}}",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "address",
+                  "address",
+                  "{{id}}"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Update Address",
+            "request": {
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\"street\":\"456 Elm St\",\"city\":\"Los Angeles\",\"state\":\"CA\",\"zip\":\"90001\",\"country\":\"USA\"}"
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/address/address/{{id}}",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "address",
+                  "address",
+                  "{{id}}"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Delete Address",
+            "request": {
+              "method": "DELETE",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:5000/api/address/address/{{id}}",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "address",
+                  "address",
+                  "{{id}}"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "Review Routes",
+        "item": [
+          {
+            "name": "Create Review",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\"product\":\"{{productId}}\",\"rating\":5,\"comment\":\"Great product!\"}"
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/review/review",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "review",
+                  "review"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Get All Reviews",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:5000/api/review/reviews",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "review",
+                  "reviews"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Get Review By ID",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:5000/api/review/review/{{id}}",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "review",
+                  "review",
+                  "{{id}}"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Update Review",
+            "request": {
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\"rating\":4,\"comment\":\"Updated review\"}"
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/review/review/{{id}}",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "review",
+                  "review",
+                  "{{id}}"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Delete Review",
+            "request": {
+              "method": "DELETE",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:5000/api/review/review/{{id}}",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "review",
+                  "review",
+                  "{{id}}"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "Cart Routes",
+        "item": [
+          {
+            "name": "Add Item to Cart",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\"product\":\"{{productId}}\",\"quantity\":1}"
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/cart/add",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "cart",
+                  "add"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Get Cart Items",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:5000/api/cart/items",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "cart",
+                  "items"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Update Cart Item Quantity",
+            "request": {
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\"product\":\"{{productId}}\",\"quantity\":2}"
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/cart/update",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "cart",
+                  "update"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Remove Item from Cart",
+            "request": {
+              "method": "DELETE",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:5000/api/cart/remove/{{productId}}",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "cart",
+                  "remove",
+                  "{{productId}}"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "Order Routes",
+        "item": [
+          {
+            "name": "Create Order",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\"address\":\"{{addressId}}\",\"paymentMethod\":\"credit_card\",\"items\":[{\"product\":\"{{productId}}\",\"quantity\":1}]}"
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/order/order",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "order",
+                  "order"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Get All Orders",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:5000/api/order/orders",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "order",
+                  "orders"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Get Order By ID",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:5000/api/order/order/{{id}}",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                  "port": "5000",
+                "path": [
+                  "api",
+                  "order",
+                  "order",
+                  "{{id}}"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Update Order",
+            "request": {
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\"status\":\"shipped\"}"
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/order/order/{{id}}",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "order",
+                  "order",
+                  "{{id}}"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Delete Order",
+            "request": {
+              "method": "DELETE",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:5000/api/order/order/{{id}}",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "5000",
+                "path": [
+                  "api",
+                  "order",
+                  "order",
+                  "{{id}}"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+  
