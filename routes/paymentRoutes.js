@@ -16,5 +16,4 @@ router.get('/order/:orderId', authenticateToken, paymentController.getPaymentByO
 // Route to get all payments (Admin only)
 router.get('/', authenticateToken, authorizeAdmin, paymentController.getAllPayments);
 
-
 module.exports = router;
