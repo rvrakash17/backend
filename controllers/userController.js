@@ -1,4 +1,6 @@
 // controllers/userController.js
+const path = require('path');
+const fs = require('fs');
 const User = require('../models/User');
 const Address = require('../models/Address'); // Import Address model
 
@@ -15,6 +17,7 @@ exports.getProfile = async (req, res) => {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
+
 
 // Update User Profile with Profile Picture
 exports.updateProfile = async (req, res) => {
@@ -38,6 +41,7 @@ exports.updateProfile = async (req, res) => {
           fs.unlinkSync(oldPicPath);
         }
       }
+      // Update with the new profile picture
       user.profilePic = profilePic;
     }
 
