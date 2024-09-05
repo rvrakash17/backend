@@ -7,13 +7,13 @@ const connectDB = require('./config/database');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const addressRoutes = require('./routes/addressRoutes'); 
-const categoryRoutes = require('./routes/categoryRoutes'); // Import category routes
-const subcategoryRoutes = require('./routes/subcategoryRoutes'); // Import subcategory routes
-const productRoutes = require('./routes/productRoutes'); // Import subcategory routes
-const reviewRoutes = require('./routes/reviewRoutes'); // Import subcategory routes
-const cartRoutes = require('./routes/cartRoutes'); // Import subcategory routes
-const orderRoutes = require('./routes/orderRoutes'); // Import subcategory routes
-const paymentRoutes = require('./routes/paymentRoutes'); // Import subcategory routes
+const categoryRoutes = require('./routes/categoryRoutes'); 
+const subcategoryRoutes = require('./routes/subcategoryRoutes'); 
+const productRoutes = require('./routes/productRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
+const cartRoutes = require('./routes/cartRoutes'); 
+const orderRoutes = require('./routes/orderRoutes'); 
+const paymentRoutes = require('./routes/paymentRoutes');
 
 
 const app = express();
