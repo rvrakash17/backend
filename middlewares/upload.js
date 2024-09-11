@@ -37,10 +37,20 @@ const uploadCategoryImage = createUpload('images/category');
 const uploadSubcategoryImage = createUpload('images/subcategory');
 const uploadProductImages = createUpload('images/products'); // For multiple product images
 
+const uploadCourseCategoryImage = createUpload('images/coursecategory', ['image/jpeg', 'image/png', 'image/gif'], 5 * 1024 * 1024);
+const uploadCourseImage = createUpload('images/course', ['image/jpeg', 'image/png', 'image/gif'], 5 * 1024 * 1024);
+const uploadVideo = createUpload('images/videos', ['video/mp4', 'video/mkv', 'video/avi'], 50 * 1024 * 1024); // 50MB limit for videos
+const uploadPdf = createUpload('images/pdfs', ['application/pdf'], 10 * 1024 * 1024); // 10MB limit for PDFs
+
+
 // Exporting the upload functions
 module.exports = {
   uploadProfileImage,
   uploadCategoryImage,
   uploadSubcategoryImage,
-  uploadProductImages
+  uploadProductImages,
+  uploadCourseCategoryImage,
+  uploadCourseImage,
+  uploadVideo,
+  uploadPdf
 };

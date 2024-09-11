@@ -5,7 +5,7 @@ const { uploadProductImages } = require('../middlewares/upload'); // Import the 
 const authorizeAdmin = require('../middlewares/authorizationMiddleware');
 
 // Route to create a new product
-router.post('/', uploadProductImages.array('productImages', 5), authorizeAdmin ,productController.createProduct);
+router.post('/', uploadProductImages.array('images', 5), authorizeAdmin ,productController.createProduct);
 
 // Route to update an existing product
 router.put('/:id', uploadProductImages.array('images', 5), authorizeAdmin ,productController.updateProduct);
